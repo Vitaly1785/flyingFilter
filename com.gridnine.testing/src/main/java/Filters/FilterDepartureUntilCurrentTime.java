@@ -23,11 +23,10 @@ public class FilterDepartureUntilCurrentTime extends FilterDecorator {
     public Set<Flight> createFilter(List<Flight> flights) {
         Set<Flight> result = new HashSet<>();
         LocalDateTime currentTime = LocalDateTime.now();
-        for (int i = 0; i < 1; i++) {
-            int finalI = i;
-            result = flights.stream().filter(a -> a.getSegments().get(finalI).getDepartureDate()
+
+            result = flights.stream().filter(a -> a.getSegments().get(0).getDepartureDate()
                     .isAfter(currentTime)).collect(Collectors.toSet());
-        }
+
         return result;
     }
 }

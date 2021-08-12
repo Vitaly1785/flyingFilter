@@ -22,11 +22,10 @@ public class FilterArrivalBeforeDeparture extends FilterDecorator {
 
     public Set<Flight> createFilter(List<Flight> flights) {
         Set<Flight> result = new HashSet<>();
-        for (int i = 0; i < 1; i++) {
-            int finalI = i;
-            result = flights.stream().filter(a -> a.getSegments().get(finalI).getArrivalDate()
-                    .isAfter(a.getSegments().get(finalI).getDepartureDate())).collect(Collectors.toSet());
-        }
+
+            result = flights.stream().filter(a -> a.getSegments().get(0).getArrivalDate()
+                    .isAfter(a.getSegments().get(0).getDepartureDate())).collect(Collectors.toSet());
+
         return result;
     }
 }

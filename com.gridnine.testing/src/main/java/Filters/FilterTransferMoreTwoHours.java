@@ -23,12 +23,11 @@ public class FilterTransferMoreTwoHours extends FilterDecorator {
         // the logic is that flights with less than 2 segments do not have transfers, respectively, are cut off by this filter
         Set<Flight> flightSet = flights.stream().filter(a -> a.getSegments().size() >= 2).collect(Collectors.toSet());
         Set<Flight> result = new HashSet<>();
-        for (int i = 0; i < flightSet.size() - 1; i++) {
-            int finalI = i;
-            result = flightSet.stream().filter(a -> a.getSegments().get(finalI).getArrivalDate()
-                            .isBefore(a.getSegments().get(finalI).getDepartureDate().plusHours(2)))
+
+            result = flightSet.stream().filter(a -> a.getSegments().get(1).getArrivalDate()
+                            .isBefore(a.getSegments().get(1).getDepartureDate().plusHours(2)))
                     .collect(Collectors.toSet());
-        }
+
         return result;
     }
 }
